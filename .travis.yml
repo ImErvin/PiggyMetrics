@@ -50,6 +50,12 @@ after_success:
   - docker tag $ACCOUNT_SERVICE:$COMMIT $ACCOUNT_SERVICE:$TAG
   - docker push $ACCOUNT_SERVICE
 
+  # ACCOUNT SERVICE V2
+  - export ACCOUNT_SERVICE_V2=sqshq/piggymetrics-account-service-v2
+  - docker build -t $ACCOUNT_SERVICE_V2:$COMMIT ./account-service-v2
+  - docker tag $ACCOUNT_SERVICE_V2:$COMMIT $ACCOUNT_SERVICE_V2:$TAG
+  - docker push $ACCOUNT_SERVICE_V2
+
   # STATISTICS SERVICE
   - export STATISTICS_SERVICE=sqshq/piggymetrics-statistics-service
   - docker build -t $STATISTICS_SERVICE:$COMMIT ./statistics-service

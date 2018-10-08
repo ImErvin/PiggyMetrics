@@ -30,6 +30,11 @@ services:
     ports:
       - 6000:6000
 
+  account-service-v2:
+    build: account-service-v2
+    ports:
+    - 6000:6001
+
   account-mongodb:
     build: mongodb
     ports:
