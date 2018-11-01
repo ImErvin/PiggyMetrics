@@ -1,19 +1,26 @@
 package com.piggymetrics.accountv2.api;
 
-import com.piggymetrics.accountv2.domain.model.Account;
+/*import com.piggymetrics.accountv2.domain.model.Account;
 import com.piggymetrics.accountv2.domain.model.User;
-import com.piggymetrics.accountv2.domain.service.AccountService;
+import com.piggymetrics.accountv2.domain.service.AccountService;*/
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.security.Principal;
 
-@Path("/account")
+@Path("/accounts/v2")
 public class AccountController {
 
-    @Inject
+    @GET
+    @Produces("text/plain")
+    public Response getCurrentAccount() {
+        return Response.ok("account-v2!").build();
+    }
+
+    /*@Inject
     private AccountService accountService;
 
     @Path("/{name}")
@@ -39,5 +46,5 @@ public class AccountController {
     @POST
     public Account createNewAccount(@Valid User user) {
         return accountService.create(user);
-    }
+    }*/
 }

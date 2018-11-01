@@ -33,7 +33,7 @@ services:
   account-service-v2:
     build: account-service-v2
     ports:
-    - 6000:6001
+    - 8180:8180
 
   account-mongodb:
     build: mongodb

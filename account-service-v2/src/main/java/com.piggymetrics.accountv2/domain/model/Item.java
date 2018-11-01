@@ -1,8 +1,10 @@
+/*
 package com.piggymetrics.accountv2.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -28,3 +30,4 @@ public class Item {
 	private String icon;
 
 }
+*/

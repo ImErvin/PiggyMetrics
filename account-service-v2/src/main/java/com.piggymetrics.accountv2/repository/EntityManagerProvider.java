@@ -1,3 +1,4 @@
+/*
 package com.piggymetrics.accountv2.repository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -19,3 +20,4 @@ public class EntityManagerProvider {
         entityManager.close();
     }
 }
+*/
