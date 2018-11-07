@@ -43,6 +43,7 @@
 		<module>statistics-service</module>
 		<module>notification-service</module>
 		<module>turbine-stream-service</module>
+		<module>account-service-v2</module>
 	</modules>
 
 </project>
