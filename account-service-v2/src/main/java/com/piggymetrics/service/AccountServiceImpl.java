@@ -1,17 +1,13 @@
 
-package service;
+package com.piggymetrics.service;
 
 
-import domain.Account;
-import domain.Currency;
-import domain.Saving;
-import domain.User;
-import repository.AccountDBProviderImpl;
+import com.piggymetrics.domain.Account;
+import com.piggymetrics.domain.User;
+import com.piggymetrics.repository.AccountDBProviderImpl;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.math.BigDecimal;
-import java.util.Date;
 
 @ApplicationScoped
 public class AccountServiceImpl implements AccountService {
@@ -26,13 +22,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public String findByName(String accountName) {
-		//Assert.hasLength(accountName);
-		return repository.getByName();
-/*		if(accountName.equals("Bob")){
-			return "You are in findByName AccountServiceImpl";
-		}
-		return "Bob's not here!!";*/
+		//Gson gson = new Gson();
 
+		return repository.findByName(accountName);
 	}
 
 
@@ -43,28 +35,28 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account create(User user) {
 
-		String existing = repository.getByName();
+		//String existing = repository.getByName();
 		//Assert.isNull(existing, "account already exists: " + user.getUsername());
 
 		//authClient.createUser(user);
 
-		Saving saving = new Saving();
-		saving.setAmount(new BigDecimal(0));
-		saving.setCurrency(Currency.getDefault());
-		saving.setInterest(new BigDecimal(0));
-		saving.setDeposit(false);
-		saving.setCapitalization(false);
-
-		Account account = new Account();
-		account.setName(user.getUsername());
-		account.setLastSeen(new Date());
-		account.setSaving(saving);
+//		Saving saving = new Saving();
+//		saving.setAmount(new BigDecimal(0));
+//		saving.setCurrency(Currency.getDefault());
+//		saving.setInterest(new BigDecimal(0));
+//		saving.setDeposit(false);
+//		saving.setCapitalization(false);
+//
+//		Account account = new Account();
+//		account.setName(user.getUsername());
+//		account.setLastSeen(new Date());
+//		account.setSaving(saving);
 
 		//repository.save(account);
 
 		//log.info("new account has been created: " + account.getName());
 
-		return account;
+		return null;
 	}
 
 	@Override

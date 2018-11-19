@@ -1,8 +1,8 @@
-package api;
+package com.piggymetrics.api;
 
-import domain.Account;
-import domain.User;
-import service.AccountService;
+import com.piggymetrics.domain.Account;
+import com.piggymetrics.domain.User;
+import com.piggymetrics.service.AccountService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -10,7 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.security.Principal;
 
-@Path("/account")
+@Path("/accounts")
 public class AccountController {
 
     @Inject
@@ -20,7 +20,6 @@ public class AccountController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getAccountByName(@PathParam("name") String name) {
-        System.out.println("Name from input " + name);
         return accountService.findByName(name);
     }
 
