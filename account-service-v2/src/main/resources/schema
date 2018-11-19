@@ -1,0 +1,17 @@
+{
+  "title":"Account",
+  "type":"object",
+  "properties" : {
+    "name":{
+      "type":"sting"
+    },
+    "date":{
+      "type":"date"
+    },
+    "incomes":{
+      "type":"array",
+      "items":
+              []
+    }
+  }
+}

@@ -78,6 +78,8 @@ services:
         max-file: "10"
 
   account-service-v2:
+    environment:
+      MONGODB_PASSWORD: $MONGODB_PASSWORD
     image: account-service-v2
     restart: always
     ports:
@@ -85,6 +87,8 @@ services:
     depends_on:
       config:
         condition: service_healthy
+    links:
+    - account-mongodb
 
   account-service:
     environment:

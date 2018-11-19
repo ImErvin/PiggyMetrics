@@ -6,7 +6,7 @@ import domain.Account;
 import domain.Currency;
 import domain.Saving;
 import domain.User;
-import repository.AccountDbProvider;
+import repository.AccountDBProviderImpl;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,17 +16,8 @@ import java.util.Date;
 @ApplicationScoped
 public class AccountServiceImpl implements AccountService {
 
-
-
-/*	@Inject
-	private StatisticsServiceClient statisticsClient;
-
 	@Inject
-	private AuthServiceClient authClient;*/
-
-
-	@Inject
-	private AccountDbProvider repository;
+	private AccountDBProviderImpl repository;
 
 
 /**
