@@ -1,4 +1,4 @@
-package com.piggymetrics.domain;
+package com.piggymetrics.accountv2.domain;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

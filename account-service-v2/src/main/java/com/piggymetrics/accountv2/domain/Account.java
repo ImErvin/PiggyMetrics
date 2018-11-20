@@ -1,4 +1,4 @@
-package com.piggymetrics.domain;
+package com.piggymetrics.accountv2.domain;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,7 +13,7 @@ public class Account {
 	@SerializedName("_id")
 	@Expose
 	private String name;
-	@SerializedName("lastSeen")
+	@SerializedName("$date")
 	@Expose
 	private Date lastSeen;
 	@SerializedName("note")
@@ -21,10 +21,10 @@ public class Account {
 	private String note;
 	@SerializedName("expenses")
 	@Expose
-	private List<Item> expenses = null;
+	private List<Item> expenses;
 	@SerializedName("incomes")
 	@Expose
-	private List<Item> incomes = null;
+	private List<Item> incomes;
 	@SerializedName("saving")
 	@Expose
 	private Saving saving;

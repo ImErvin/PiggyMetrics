@@ -1,10 +1,10 @@
 
-package com.piggymetrics.service;
+package com.piggymetrics.accountv2.service;
 
 
-import com.piggymetrics.domain.Account;
-import com.piggymetrics.domain.User;
-import com.piggymetrics.repository.AccountDBProviderImpl;
+import com.piggymetrics.accountv2.domain.Account;
+import com.piggymetrics.accountv2.domain.User;
+import com.piggymetrics.accountv2.repository.AccountDBProviderImpl;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

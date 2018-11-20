@@ -1,4 +1,4 @@
-package com.piggymetrics.domain;
+package com.piggymetrics.accountv2.domain;
 
 public enum TimePeriod {
 

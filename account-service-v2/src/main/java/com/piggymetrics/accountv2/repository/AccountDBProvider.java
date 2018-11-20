@@ -1,4 +1,4 @@
-package com.piggymetrics.repository;
+package com.piggymetrics.accountv2.repository;
 
 public interface AccountDBProvider {
 

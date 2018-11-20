@@ -1,15 +1,18 @@
-package com.piggymetrics.repository;
-
-
+package com.piggymetrics.accountv2.repository;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.piggymetrics.domain.Account;
+import com.piggymetrics.accountv2.domain.Account;
 import org.bson.Document;
 
 import javax.enterprise.context.ApplicationScoped;
+
+import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -25,7 +28,16 @@ public class AccountDBProviderImpl implements AccountDBProvider{
     public String findByName(String name) {
         Document serializedAccount = collection.find(eq("_id", name)).first();
 
-        Account deserializedAccount = gson.fromJson(serializedAccount.toJson(), Account.class);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
+        gsonBuilder.registerTypeAdapter(Account.class, (JsonDeserializer<Account>) (jsonElement, type, jsonDeserializationContext) -> {
+            Gson gson = new Gson();
+            JsonObject lastSeenInMilli = (JsonObject) jsonElement.getAsJsonObject().get("lastSeen");
+            Long lastSeen = gson.fromJson(lastSeenInMilli.get("$date"), Long.class);
+            Account account = gson.fromJson(jsonElement, Account.class);
+            account.setLastSeen(new Date(lastSeen));
+            return account;
+        });
 
         return serializedAccount.toJson();
     }

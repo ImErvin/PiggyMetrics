@@ -1,4 +1,4 @@
-package com.piggymetrics.repository;
+package com.piggymetrics.accountv2.repository;
 
 
 import com.mongodb.ConnectionString;
@@ -18,6 +18,7 @@ public class MongoClientProvider {
         mongoClient = MongoClients.create( new ConnectionString("mongodb://user:sd@account-mongodb/piggymetrics"));
     }
 
+    // Synchronized singleton pattern implementation
     @Synchronized
     public static MongoClientProvider getInstance(){
         if(instance == null){

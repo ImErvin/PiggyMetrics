@@ -1,8 +1,8 @@
-package com.piggymetrics.api;
+package com.piggymetrics.accountv2.api;
 
-import com.piggymetrics.domain.Account;
-import com.piggymetrics.domain.User;
-import com.piggymetrics.service.AccountService;
+import com.piggymetrics.accountv2.domain.Account;
+import com.piggymetrics.accountv2.domain.User;
+import com.piggymetrics.accountv2.service.AccountService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;

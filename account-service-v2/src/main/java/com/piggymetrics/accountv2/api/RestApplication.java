@@ -1,4 +1,4 @@
-package com.piggymetrics.api;
+package com.piggymetrics.accountv2.api;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
