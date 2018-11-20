@@ -19,13 +19,13 @@ public class AccountDBProviderImplTest {
     public void gsonToPojoTest() {
         GsonBuilder gsonBuilder = new GsonBuilder();
 
-        gsonBuilder.registerTypeAdapter(Account.class, (JsonDeserializer<Account>) (jsonElement, type, jsonDeserializationContext) -> {
-            Gson gson = new Gson();
-            JsonObject lastSeenInMilli = (JsonObject) jsonElement.getAsJsonObject().get("lastSeen");
-            Long lastSeen = gson.fromJson(lastSeenInMilli.get("$date"), Long.class);
-            Account a = gson.fromJson(jsonElement, Account.class);
-            a.setLastSeen(new Date(lastSeen));
-            return a;
+        gsonBuilder.registerTypeAdapter(Date.class, (JsonDeserializer<Date>) (jsonElement, type, jsonDeserializationContext) -> {
+//            Gson gson = new Gson();
+//            JsonObject lastSeenInMilli = (JsonObject) jsonElement.getAsJsonObject().get("lastSeen");
+//            Long lastSeen = gson.fromJson(lastSeenInMilli.get("$date"), Long.class);
+//            Account account = gson.fromJson(jsonElement, Account.class);
+//            account.setLastSeen(new Date(lastSeen));
+            return new Date(jsonElement.getAsJsonPrimitive().getAsLong());
         });
 
         Gson gson = gsonBuilder.create();
@@ -41,6 +41,6 @@ public class AccountDBProviderImplTest {
         for(Item income : account.getIncomes()){
             System.out.println(income.getTitle().toString());
         }
-        System.out.println(account.getLastSeen());
+        System.out.println(account.getLastSeen().getDate());
     }
 }

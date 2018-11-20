@@ -2,8 +2,10 @@
 package com.piggymetrics.accountv2.service;
 
 
+import com.google.gson.Gson;
 import com.piggymetrics.accountv2.domain.Account;
 import com.piggymetrics.accountv2.domain.User;
+import com.piggymetrics.accountv2.repository.AccountDBProvider;
 import com.piggymetrics.accountv2.repository.AccountDBProviderImpl;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -13,7 +15,7 @@ import javax.inject.Inject;
 public class AccountServiceImpl implements AccountService {
 
 	@Inject
-	private AccountDBProviderImpl repository;
+	private AccountDBProvider repository;
 
 
 /**
@@ -22,9 +24,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public String findByName(String accountName) {
-		//Gson gson = new Gson();
+		Gson gson = new Gson();
 
-		return repository.findByName(accountName);
+		return gson.toJson(repository.findByName(accountName));
 	}
 
 

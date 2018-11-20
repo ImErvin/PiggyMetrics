@@ -25,20 +25,22 @@ public class AccountDBProviderImpl implements AccountDBProvider{
     private Gson gson = new Gson();
 
     @Override
-    public String findByName(String name) {
+    public Account findByName(String name) {
         Document serializedAccount = collection.find(eq("_id", name)).first();
-
         GsonBuilder gsonBuilder = new GsonBuilder();
 
-        gsonBuilder.registerTypeAdapter(Account.class, (JsonDeserializer<Account>) (jsonElement, type, jsonDeserializationContext) -> {
-            Gson gson = new Gson();
-            JsonObject lastSeenInMilli = (JsonObject) jsonElement.getAsJsonObject().get("lastSeen");
-            Long lastSeen = gson.fromJson(lastSeenInMilli.get("$date"), Long.class);
-            Account account = gson.fromJson(jsonElement, Account.class);
-            account.setLastSeen(new Date(lastSeen));
-            return account;
+        gsonBuilder.registerTypeAdapter(Date.class, (JsonDeserializer<Date>) (jsonElement, type, jsonDeserializationContext) -> {
+//            Gson gson = new Gson();
+//            JsonObject lastSeenInMilli = (JsonObject) jsonElement.getAsJsonObject().get("lastSeen");
+//            Long lastSeen = gson.fromJson(lastSeenInMilli.get("$date"), Long.class);
+//            Account account = gson.fromJson(jsonElement, Account.class);
+//            account.setLastSeen(new Date(lastSeen));
+            return new Date(jsonElement.getAsJsonPrimitive().getAsLong());
         });
 
-        return serializedAccount.toJson();
+        Gson gson = gsonBuilder.create();
+
+        //Account account = gson.fromJson(serializedAccount.toJson(), Account.class);
+        return gson.fromJson(serializedAccount.toJson(), Account.class);
     }
 }

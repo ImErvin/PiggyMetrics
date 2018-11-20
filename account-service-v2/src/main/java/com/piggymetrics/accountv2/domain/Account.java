@@ -13,9 +13,9 @@ public class Account {
 	@SerializedName("_id")
 	@Expose
 	private String name;
-	@SerializedName("$date")
+	@SerializedName("lastSeen")
 	@Expose
-	private Date lastSeen;
+	private LastSeen lastSeen;
 	@SerializedName("note")
 	@Expose
 	private String note;
