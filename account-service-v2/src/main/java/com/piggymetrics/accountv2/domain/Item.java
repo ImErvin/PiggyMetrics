@@ -2,19 +2,20 @@ package com.piggymetrics.accountv2.domain;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Getter @Setter
+@Getter @Setter @AllArgsConstructor
 public class Item {
     @SerializedName("amount")
     @Expose
     private BigDecimal amount;
     @SerializedName("currency")
     @Expose
-    private String currency;
+    private Currency currency;
     @SerializedName("icon")
     @Expose
     private String icon;

@@ -8,16 +8,18 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.piggymetrics.accountv2.domain.Account;
+import com.piggymetrics.accountv2.domain.User;
 import org.bson.Document;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
 
 @ApplicationScoped
-public class AccountDBProviderImpl implements AccountDBProvider{
+public class AccountDBProviderImpl implements AccountDBProvider {
 
     private MongoClient mongoClient = MongoClientProvider.getInstance().getMongoClient();
     private MongoDatabase database = mongoClient.getDatabase("piggymetrics");
@@ -27,20 +29,42 @@ public class AccountDBProviderImpl implements AccountDBProvider{
     @Override
     public Account findByName(String name) {
         Document serializedAccount = collection.find(eq("_id", name)).first();
+
+        return getCustomGsonBuilder().fromJson(serializedAccount.toJson(), Account.class);
+    }
+
+    @Override
+    public Account insertOne(Account newAccount) {
+        Account existing = findByName(newAccount.getName());
+
+        if(existing.equals(null)){
+            return null;
+        }
+
+        Document serializedAccount = new Document().parse(getCustomGsonBuilder().toJson(newAccount));
+
+        collection.insertOne(serializedAccount);
+
+        return newAccount;
+    }
+
+    @Override
+    public void updateOne(String name, Account updatedAccount) {
+
+    }
+
+    private Gson getCustomGsonBuilder(){
         GsonBuilder gsonBuilder = new GsonBuilder();
 
-        gsonBuilder.registerTypeAdapter(Date.class, (JsonDeserializer<Date>) (jsonElement, type, jsonDeserializationContext) -> {
-//            Gson gson = new Gson();
-//            JsonObject lastSeenInMilli = (JsonObject) jsonElement.getAsJsonObject().get("lastSeen");
-//            Long lastSeen = gson.fromJson(lastSeenInMilli.get("$date"), Long.class);
-//            Account account = gson.fromJson(jsonElement, Account.class);
-//            account.setLastSeen(new Date(lastSeen));
-            return new Date(jsonElement.getAsJsonPrimitive().getAsLong());
-        });
+        // Adapted from:
+        // https://stackoverflow.com/questions/6873020/gson-date-format
+        // https://google.github.io/gson/apidocs/com/google/gson/GsonBuilder.html#registerTypeAdapter-java.lang.reflect.Type-java.lang.Object-
+        gsonBuilder.registerTypeAdapter(Date.class,
+                (JsonDeserializer<Date>) (jsonElement, type, jsonDeserializationContext)
+                        -> new Date(jsonElement.getAsJsonPrimitive().getAsLong()));
 
         Gson gson = gsonBuilder.create();
 
-        //Account account = gson.fromJson(serializedAccount.toJson(), Account.class);
-        return gson.fromJson(serializedAccount.toJson(), Account.class);
+        return gson;
     }
 }

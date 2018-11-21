@@ -2,11 +2,12 @@ package com.piggymetrics.accountv2.domain;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
 
-@Getter @Setter
+@Getter @Setter @AllArgsConstructor
 public class Saving {
 	@SerializedName("amount")
 	@Expose
