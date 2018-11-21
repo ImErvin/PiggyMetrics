@@ -28,28 +28,26 @@ public class AccountDBProviderImpl implements AccountDBProvider {
 
     @Override
     public Account findByName(String name) {
-        Document serializedAccount = collection.find(eq("_id", name)).first();
-
-        return getCustomGsonBuilder().fromJson(serializedAccount.toJson(), Account.class);
-    }
-
-    @Override
-    public Account insertOne(Account newAccount) {
-        Account existing = findByName(newAccount.getName());
-
-        if(existing.equals(null)){
+        try {
+            Document serializedAccount = collection.find(eq("_id", name)).first();
+            return getCustomGsonBuilder().fromJson(serializedAccount.toJson(), Account.class);
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage() + " caused by " + e.getCause());
             return null;
         }
-
-        Document serializedAccount = new Document().parse(getCustomGsonBuilder().toJson(newAccount));
-
-        collection.insertOne(serializedAccount);
-
-        return newAccount;
     }
 
     @Override
-    public void updateOne(String name, Account updatedAccount) {
+    public void insertOne(Account newAccount) {
+        try {
+            collection.insertOne(new Document().parse(getCustomGsonBuilder().toJson(newAccount)));
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage() + " caused by " + e.getCause());
+        }
+    }
+
+    @Override
+    public void updateOne(Account updatedAccount) {
 
     }
 

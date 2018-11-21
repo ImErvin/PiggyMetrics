@@ -9,7 +9,6 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 public class VerifyGsonToPojoObjectTypesTest {
     private String jsonData = "{\"_id\":\"demo\",\"lastSeen\":{\"$date\":1542648276849},\"note\":\"demo note\",\"expenses\":[{\"amount\":1300,\"currency\":\"USD\",\"icon\":\"home\",\"period\":\"MONTH\",\"title\":\"Rent\"},{\"amount\":120,\"currency\":\"USD\",\"icon\":\"utilities\",\"period\":\"MONTH\",\"title\":\"Utilities\"}],\"incomes\":[{\"amount\":42000,\"currency\":\"USD\",\"icon\":\"wallet\",\"period\":\"YEAR\",\"title\":\"Salary\"},{\"amount\":500,\"currency\":\"USD\",\"icon\":\"edu\",\"period\":\"MONTH\",\"title\":\"Scholarship\"}],\"saving\":{\"amount\":5900,\"capitalization\":false,\"currency\":\"USD\",\"deposit\":true,\"interest\":3.32}}";
     private Account testAccount = gsonToPojoAccountData();

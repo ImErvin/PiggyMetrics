@@ -6,7 +6,7 @@ import com.piggymetrics.accountv2.domain.User;
 
 public interface AccountService {
 
-	String findByName(String accountName);
+	Account findByName(String accountName);
 
 	Account create(User user);
 

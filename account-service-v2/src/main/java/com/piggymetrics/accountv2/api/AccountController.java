@@ -19,7 +19,7 @@ public class AccountController {
     @Path("/{name}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAccountByName(@PathParam("name") String name) {
+    public Account getAccountByName(@PathParam("name") String name) {
         return accountService.findByName(name);
     }
 

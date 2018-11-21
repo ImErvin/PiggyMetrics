@@ -18,7 +18,7 @@ public class MongoClientProvider {
         mongoClient = MongoClients.create( new ConnectionString("mongodb://user:sd@account-mongodb/piggymetrics"));
     }
 
-    // Synchronized singleton pattern implementation
+    // Synchronized singleton pattern implementation adapted from GOF Design Patterns.
     @Synchronized
     public static MongoClientProvider getInstance(){
         if(instance == null){
