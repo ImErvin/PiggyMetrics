@@ -23,9 +23,9 @@ zuul:
         stripPrefix: false
         sensitiveHeaders:
 
-    account-service:
+    account-service-v2:
         path: /accounts/**
-        serviceId: account-service
+        url: http://account-service-v2:8080
         stripPrefix: false
         sensitiveHeaders:
 

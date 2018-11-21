@@ -13,7 +13,7 @@ services:
   config:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: sqshq/piggymetrics-config
+    image: config
     restart: always
     logging:
       options:
@@ -49,6 +49,8 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
+    links:
+      - account-service-v2
 
   auth-service:
     environment:
@@ -80,10 +82,11 @@ services:
   account-service-v2:
     environment:
       MONGODB_PASSWORD: $MONGODB_PASSWORD
+    build: ./account-service-v2
     image: account-service-v2
     restart: always
     ports:
-    - 8180:8080
+    - 8080:8080
     depends_on:
       config:
         condition: service_healthy
