@@ -1,12 +1,12 @@
 package com.piggymetrics.accountv2.repository;
 
-import com.piggymetrics.accountv2.domain.Account;
+import org.bson.Document;
 
 public interface AccountDBProvider {
 
-    Account findByName(String name);
+    Document findByName(String name);
 
-    void insertOne(Account newAccount);
+    void insertOne(Document newAccount);
 
-    void updateOne(Account updatedAccount);
+    void updateOne(Document updatedAccount);
 }
