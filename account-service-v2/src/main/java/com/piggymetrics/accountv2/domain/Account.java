@@ -8,24 +8,25 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 public class Account {
-	@SerializedName("_id")
-	@Expose
-	private String name;
-	@SerializedName("lastSeen")
-	@Expose
-	private LastSeen lastSeen;
-	@SerializedName("note")
-	@Expose
-	private String note;
-	@SerializedName("expenses")
-	@Expose
-	private List<Item> expenses;
-	@SerializedName("incomes")
-	@Expose
-	private List<Item> incomes;
-	@SerializedName("saving")
-	@Expose
-	private Saving saving;
+    @SerializedName("_id")
+    @Expose(serialize = false)
+    private String name;
+    @SerializedName("lastSeen")
+    @Expose(serialize = false)
+    private LastSeen lastSeen;
+    @SerializedName("note")
+    @Expose(serialize = false)
+    private String note;
+    @SerializedName("expenses")
+    @Expose(serialize = false)
+    private List<Item> expenses;
+    @SerializedName("incomes")
+    @Expose(serialize = false)
+    private List<Item> incomes;
+    @SerializedName("saving")
+    @Expose(serialize = false)
+    private Saving saving;
 }
