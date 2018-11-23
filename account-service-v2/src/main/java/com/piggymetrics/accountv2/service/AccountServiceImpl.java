@@ -16,8 +16,7 @@ public class AccountServiceImpl implements AccountService {
 	@Inject
 	private AccountDBProvider repository;
 
-	@Inject
-	private CustomGson customGson;
+	private CustomGson customGson = new CustomGsonImpl();
 
 	@Override
 	public String findByName(String accountName) {

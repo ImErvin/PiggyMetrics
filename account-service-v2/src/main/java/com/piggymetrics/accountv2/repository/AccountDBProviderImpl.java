@@ -27,7 +27,5 @@ public class AccountDBProviderImpl implements AccountDBProvider {
     }
 
     @Override
-    public void updateOne(Document updatedAccount) {
-
-    }
+    public void updateOne(Document updatedAccount) { }
 }
