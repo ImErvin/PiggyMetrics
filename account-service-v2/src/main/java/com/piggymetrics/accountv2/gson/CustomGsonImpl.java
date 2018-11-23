@@ -2,10 +2,8 @@ package com.piggymetrics.accountv2.gson;
 
 import com.google.gson.*;
 import com.piggymetrics.accountv2.domain.Account;
-import lombok.NoArgsConstructor;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.util.Date;
 
 @ApplicationScoped

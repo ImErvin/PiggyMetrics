@@ -1,18 +1,15 @@
 package com.piggymetrics.accountv2.gson;
 
-import com.google.gson.Gson;
 import com.piggymetrics.accountv2.domain.*;
 import org.bson.Document;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 public class CustomGsonImplTest {
 
@@ -88,7 +85,4 @@ public class CustomGsonImplTest {
 
         Assert.assertTrue(deserializedAccount.getLastSeen().getDate() instanceof Date);
     }
-
-    @Test
-    public void verify
 }
